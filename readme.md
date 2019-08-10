@@ -1,9 +1,9 @@
 # copy-taro
 
-Copy and paste
+Copy and paste elements in web page.
 
 コピ太朗は、Webページの要素をコピペするツールです。
 
-## license
+## License
 
-MIT License
+copy-taro is released under the MIT License.
