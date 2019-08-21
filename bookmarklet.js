@@ -18,8 +18,8 @@ javascript: void((function(undefined) {
     input.setAttribute('value', uri);
     f.appendChild(input);
 
-    f.method = "POST";
-    f.target = "_blank";
-    f.action = "https://www.catch.jp/program/copy-taro/index.php";
+    f.method = 'POST';
+    f.target = '_blank';
+    f.action = 'https://www.catch.jp/program/copy-taro/index.php';
     f.submit();
 })());

@@ -2,7 +2,7 @@
 
 Copy and paste elements in web page.
 
-Webコピ太朗は、Webページの要素をコピペするツールです。
+Webコピ太郎は、Webページの要素をコピペするツールです。
 
 ## License
 
