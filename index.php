@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Yutaka Kachi">
-    <meta name="description" content="Webページの要素をコピペするためのツールです">
+    <meta name="description" content="Webページの要素をコピペしやすくするツールです">
 
-    <title>Web コピ太郎</title>
+    <title>Webコピ太郎</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
@@ -22,15 +22,16 @@
 
         <section class="container">
 
-            <h1>Web コピ太郎</h1>
-            <p>Webコピ太郎は、Webページの要素をコピペするためのツールです。</p>
+            <h1>Webコピ太郎</h1>
+            <p>Webページの要素をコピペしやすくするツールです。</p>
             <p>ページタイトルとアドレスをフォームに表示します。</p>
 
             <h2>取り出した情報</h2>
             <textarea rows=15 cols=80><?php
-                if(isset($_POST)) {
+                if(!empty($_POST)) {
                     foreach($_POST as $key => $value) {
-                        echo "${value}\n";
+                        $str = htmlspecialchars($value, ENT_QUOTES);
+                        echo "${str}\n";
                     }
                 } else {
                     echo "I have not received data.";
@@ -39,9 +40,9 @@
 
             <h2>使い方</h2>
 
-            <a class="button" href="javascript:void((function(undefined){var f=document.createElement('form');document.body.appendChild(f);var title=document.title;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','title');input.setAttribute('value',title);f.appendChild(input);var uri=location.href;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','uri');input.setAttribute('value',uri);f.appendChild(input);f.method='POST';f.target='_blank';f.action='https://www.catch.jp/program/copy-taro/index.php';f.submit()})());">Get page info</a>
+            <a class="button" href="javascript:void((function(undefined){var f=document.createElement('form');document.body.appendChild(f);var title=document.title;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','title');input.setAttribute('value',title);f.appendChild(input);var uri=location.href;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','uri');input.setAttribute('value',uri);f.appendChild(input);f.method='POST';f.target='_blank';f.action='https://www.catch.jp/program/copy-taro/index.php';f.submit()})());">Webコピ太郎</a>
             <ul>
-            <li>このボタンをクリックすると、ページタイトルとアドレスをフォームに表示します。</li>
+            <li>「Webコピ太郎」ボタンをクリックすると、ページタイトルとアドレスをフォームに表示します。</li>
             <li>ブックマークツールバーに、このボタンをドラッグ＆ドロップしておくと、他のWebページでも情報を取り出せます。</li>
             </ul>
 
