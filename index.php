@@ -24,9 +24,9 @@
 
             <h1>Webコピ太郎</h1>
             <p>Webページの要素をコピペしやすくするツールです。</p>
-            <p>ページタイトルとアドレスをフォームに表示します。</p>
+            <p>いま見ているページのタイトルとアドレスを、フォームにまとめて表示します。</p>
 
-            <h2>取り出した情報</h2>
+            <h2>見ていたページ</h2>
             <textarea rows=15 cols=80><?php
                 if(!empty($_POST)) {
                     foreach($_POST as $key => $value) {
@@ -34,16 +34,18 @@
                         echo "${str}\n";
                     }
                 } else {
-                    echo "I have not received data.";
+                    echo "I don't have any information now.";
                 }?>
             </textarea>
 
             <h2>使い方</h2>
 
             <a class="button" href="javascript:void((function(undefined){var f=document.createElement('form');document.body.appendChild(f);var title=document.title;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','title');input.setAttribute('value',title);f.appendChild(input);var uri=location.href;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','uri');input.setAttribute('value',uri);f.appendChild(input);f.method='POST';f.target='_blank';f.action='https://www.catch.jp/program/copy-taro/index.php';f.submit()})());">Webコピ太郎</a>
+
             <ul>
             <li>「Webコピ太郎」ボタンをクリックすると、ページタイトルとアドレスをフォームに表示します。</li>
             <li>ブックマークツールバーに、このボタンをドラッグ＆ドロップしておくと、他のWebページでも情報を取り出せます。</li>
+            <li>ボタンを右クリック > 「リンクをブックマーク」でもOK</li>
             </ul>
 
             <h2>ソースコード</h2>
