@@ -20,17 +20,24 @@
 <body>
     <main class="wrapper">
 
-        <section class="container" id="examples">
+        <section class="container">
 
             <h1>copy-taro</h1>
             <p>copy and paste elements from web page.</p>
             <p>コピ太朗は、Webページの要素をコピペするツールです。</p>
-            <div id="title"></div>
-            <div id="uri"></div>
-            <div id="message"></div>
+
+            <h2>Recive info.</h2>
+            <?php
+            if(isset($_POST)){
+                foreach($_POST as $key => $value) {
+                    echo "<p>${key} : ${value}</p>";
+                }
+            } else {
+                echo "I do not received data.";
+            }
+            ?>
         </section>
     </main>
-
 </body>
 
 </html>
