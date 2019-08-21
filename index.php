@@ -8,7 +8,7 @@
     <meta name="author" content="Yutaka Kachi">
     <meta name="description" content="copy and paste elements from web page.">
 
-    <title>copy-taro</title>
+    <title>Web copy-taro</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
@@ -22,20 +22,22 @@
 
         <section class="container">
 
-            <h1>copy-taro</h1>
+            <h1>Web copy-taro</h1>
             <p>copy and paste elements from web page.</p>
-            <p>コピ太朗は、Webページの要素をコピペするツールです。</p>
+            <p>Webコピ太朗は、Webページの要素をコピペするツールです。</p>
 
             <h2>Recive info.</h2>
-            <?php
-            if(isset($_POST)){
-                foreach($_POST as $key => $value) {
-                    echo "<p>${key} : ${value}</p>";
-                }
-            } else {
-                echo "I do not received data.";
-            }
-            ?>
+            <textarea rows=15 cols=80><?php
+                if(isset($_POST)) {
+                    foreach($_POST as $key => $value) {
+                        echo "${value}\n";
+                    }
+                } else {
+                    echo "I have not received data.";
+                }?>
+            </textarea>
+
+            <p><a href="https://github.com/ycatch/copy-taro">Link to Github<p>
         </section>
     </main>
 </body>
