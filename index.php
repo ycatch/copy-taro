@@ -30,6 +30,9 @@
             <textarea rows=15 cols=80><?php
                 if(!empty($_POST)) {
                     foreach($_POST as $key => $value) {
+                        if ($key == "title") {
+                            $value = mb_convert_encoding($value, "UTF-8", "auto");
+                        }
                         $str = htmlspecialchars($value, ENT_QUOTES);
                         echo "${str}\n";
                     }
