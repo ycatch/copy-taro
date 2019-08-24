@@ -40,7 +40,9 @@
                     $output = "This time I don't have any information.";
                 }
             ?>
-            <textarea rows=15 cols=80><?php echo $output; ?></textarea>
+            <form>
+                <textarea rows=15 cols=80><?php echo $output; ?></textarea>
+            </form>
 
             <h2>使い方</h2>
 
