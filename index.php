@@ -27,19 +27,20 @@
             <p>いま見ているページのタイトルとアドレスを、フォームにまとめて表示します。</p>
 
             <h2>見ていたページ</h2>
-            <textarea rows=15 cols=80><?php
+            <?php
                 if(!empty($_POST)) {
+                    $output = "";
                     foreach($_POST as $key => $value) {
                         if ($key == "title") {
                             $value = mb_convert_encoding($value, "UTF-8", "auto");
                         }
-                        $str = htmlspecialchars($value, ENT_QUOTES);
-                        echo "${str}\n";
+                        $output = $output.htmlspecialchars($value, ENT_QUOTES)."\n";
                     }
                 } else {
-                    echo "I don't have any information now.";
-                }?>
-            </textarea>
+                    $output = "This time I don't have any information.";
+                }
+            ?>
+            <textarea rows=15 cols=80><?php echo $output; ?></textarea>
 
             <h2>使い方</h2>
 
