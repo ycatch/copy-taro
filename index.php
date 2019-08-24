@@ -41,7 +41,8 @@
                 }
             ?>
             <form>
-                <textarea rows=15 cols=80><?php echo $output; ?></textarea>
+                <textarea class="js-copytext" rows=15 cols=80><?php echo $output; ?></textarea>
+                <a class="button js-copybutton" href="#">コピーする</a>
             </form>
 
             <h2>使い方</h2>
@@ -62,5 +63,24 @@
             <p>
         </section>
     </main>
+    <script>
+    var copyTextButton = document.querySelector('.js-copybutton');
+    copyTextButton.addEventListener('click', function(event) {
+        var copyText = document.querySelector('.js-copytext');
+        
+        var range = document.createRange();
+        range.selectNode(copyText);
+        window.getSelection().addRange(range);
+
+        try {
+            var successful = document.execCommand('copy');
+            var message = successful ? 'successful' : 'unsuccessful';
+            console.log('Copy command was ' + message);
+        } catch(err) {
+            console.log('Oops, unable to copy');
+        }
+        window.getSelection().removeAllRanges();
+    });
+    </script>
 </body>
 </html>
