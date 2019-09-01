@@ -41,15 +41,11 @@
                 }
             ?>
             <form>
-                <textarea id="copy-area" class="js-copytext" rows=15 cols=80><?php echo $output; ?></textarea>
+                <textarea id="copy-area" class="js-copytext" rows=15 cols=80><?php echo rtrim($output); ?></textarea>
                 <a class="button" data-clipboard-target="#copy-area" href="#">
-                コピーする
+                クリップボードにコピー
                 </a>
             </form>
-
-            <ul>
-            <li>「コピーする」ボタンをクリックすると、クリップボードにフォームのテキストをクリップボードにコピーします。</li>
-            </ul>
 
             <h2>使い方</h2>
 
