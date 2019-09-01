@@ -41,9 +41,15 @@
                 }
             ?>
             <form>
-                <textarea class="js-copytext" rows=15 cols=80><?php echo $output; ?></textarea>
-                <a class="button js-copybutton" href="#">コピーする</a>
+                <textarea id="copy-area" class="js-copytext" rows=15 cols=80><?php echo $output; ?></textarea>
+                <a class="button" data-clipboard-target="#copy-area" href="#">
+                コピーする
+                </a>
             </form>
+
+            <ul>
+            <li>「コピーする」ボタンをクリックすると、クリップボードにフォームのテキストをクリップボードにコピーします。</li>
+            </ul>
 
             <h2>使い方</h2>
 
@@ -63,23 +69,21 @@
             <p>
         </section>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
     <script>
-    var copyTextButton = document.querySelector('.js-copybutton');
-    copyTextButton.addEventListener('click', function(event) {
-        var copyText = document.querySelector('.js-copytext');
-        
-        var range = document.createRange();
-        range.selectNode(copyText);
-        window.getSelection().addRange(range);
+    var clipboard = new ClipboardJS('.button');
 
-        try {
-            var successful = document.execCommand('copy');
-            var message = successful ? 'successful' : 'unsuccessful';
-            console.log('Copy command was ' + message);
-        } catch(err) {
-            console.log('Oops, unable to copy');
-        }
-        window.getSelection().removeAllRanges();
+    clipboard.on('success', function(e) {
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+
+        e.clearSelection();
+    });
+
+    clipboard.on('error', function(e) {
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
     });
     </script>
 </body>
