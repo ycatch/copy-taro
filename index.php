@@ -25,8 +25,8 @@
             <h1>Webコピ太郎</h1>
             <p>Webページの要素をコピペしやすくするツールです。</p>
             <p>いま見ているページのタイトルとアドレスを、フォームにまとめて表示します。</p>
-
-            <h2>見ていたページ</h2>
+            
+            <h2>取得した情報</h2>
             <?php
                 if(empty($_POST)) {
                     $output = "This time I don't have any information.";
@@ -35,27 +35,48 @@
                     foreach($_POST as $key => $value) {
                         if ($key == "title") {
                             $value = mb_convert_encoding($value, "UTF-8", "auto");
+                            $pageTitle = htmlspecialchars($value, ENT_QUOTES);
+                            echo '<div>ページタイトル：<span id="pageTitle">' . rtrim($pageTitle) . '</span></div>';
+                        } else {
+                            $pageAddress = htmlspecialchars($value, ENT_QUOTES);
+                            echo '<div>アドレス：<span id="pageAddress">' . rtrim($pageAddress) . '</span></div>';
                         }
-                        $output = $output.htmlspecialchars($value, ENT_QUOTES)."\n";
                     }
+                    $output = $pageTitle . "\n" . $pageAddress;
                 }
             ?>
+
+            <hr>
+
+            <h3>フォーマット</h3>
             <form>
-                <textarea id="copy-area" class="js-copytext" rows=15 cols=80><?php echo rtrim($output); ?></textarea>
-                <a class="button" data-clipboard-target="#copy-area" href="#">
-                クリップボードにコピー
-                </a>
+                <input type="radio" name="format" value="0" checked> テキスト 
+                <input type="radio" name="format" value="1"> Markdown-List 
+                <input type="radio" name="format" value="2"> Markdown-Link 
+                <input type="radio" name="format" value="3"> HTML 
+
+                <textarea id="copyArea" class="js-copytext" rows=15 cols=80><?php echo rtrim($output); ?></textarea>
+                <p>
+                    <a class="button" data-clipboard-target="#copyArea" href="#">クリップボードにコピー </a>
+                </p>
             </form>
 
-            <h2>使い方</h2>
+            <hr>
+
+            <h2>情報を取得する</h2>
 
             <a class="button" href="javascript:void((function(undefined){var f=document.createElement('form');document.body.appendChild(f);var title=document.title;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','title');input.setAttribute('value',title);f.appendChild(input);var uri=location.href;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','uri');input.setAttribute('value',uri);f.appendChild(input);f.method='POST';f.target='_blank';f.action='https://www.catch.jp/program/copy-taro/index.php';f.submit()})());">Webコピ太郎ブックマークレット</a>
 
+            <hr>
+
+            <h3>使い方</h3>
             <ul>
             <li>「Webコピ太郎ブックマークレット」ボタンをクリックすると、ページタイトルとアドレスをフォームに表示します。</li>
             <li>ブックマークツールバーに、このボタンをドラッグ＆ドロップしておくと、他のWebページでも同じように情報を取り出せます。</li>
             <li>ボタンを右クリック > 「リンクをブックマーク」でもOK</li>
             </ul>
+
+            <hr>
 
             <h2>関連情報</h2>
             <div>
@@ -84,6 +105,43 @@
         console.error('Action:', e.action);
         console.error('Trigger:', e.trigger);
     });
+    </script>
+
+    <script>
+        window.onload = function() {
+
+            let pageTitle = document.getElementById('pageTitle');
+            let pageAddress = document.getElementById('pageAddress');
+            let copyArea = document.getElementById('copyArea');
+            let checkOption = document.getElementsByName('format');
+            
+            checkOption.forEach(function(event) {
+                event.addEventListener("click", function() {
+                    let format_value = document.querySelector("input:checked[name=format]").value; 
+                    switch(Number(format_value)) {
+                        case 0: // Planetext
+                            setFormat(pageTitle.innerText + "\n" + pageAddress.innerText);
+                            break;
+                        case 1: // markdown-List
+                            setFormat("- " + pageTitle.innerText + "\n" + "  " + pageAddress.innerText);
+                            break;
+                        case 2: // markdown-Link
+                            setFormat("[" + pageTitle.innerText + "](" + pageAddress.innerText + ")");
+                            break;
+                        case 3:
+                            setFormat("<a href='" + pageAddress.innerText + "'>" + pageTitle.innerText + "</a>");
+                            break;
+                        default:
+                            //Don't call this
+                            setFormat(format_value + pageTitle.innerText + "\n" + "default"); 
+                    }
+                });
+            });
+
+            let setFormat = function(format_text) {
+                copyArea.value = format_text;
+            };
+        };
     </script>
 </body>
 </html>
