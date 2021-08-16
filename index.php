@@ -28,7 +28,9 @@
 
             <h2>見ていたページ</h2>
             <?php
-                if(!empty($_POST)) {
+                if(empty($_POST)) {
+                    $output = "This time I don't have any information.";
+                } else {
                     $output = "";
                     foreach($_POST as $key => $value) {
                         if ($key == "title") {
@@ -36,8 +38,6 @@
                         }
                         $output = $output.htmlspecialchars($value, ENT_QUOTES)."\n";
                     }
-                } else {
-                    $output = "This time I don't have any information.";
                 }
             ?>
             <form>
@@ -49,20 +49,23 @@
 
             <h2>使い方</h2>
 
-            <a class="button" href="javascript:void((function(undefined){var f=document.createElement('form');document.body.appendChild(f);var title=document.title;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','title');input.setAttribute('value',title);f.appendChild(input);var uri=location.href;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','uri');input.setAttribute('value',uri);f.appendChild(input);f.method='POST';f.target='_blank';f.action='https://www.catch.jp/program/copy-taro/index.php';f.submit()})());">Webコピ太郎</a>
+            <a class="button" href="javascript:void((function(undefined){var f=document.createElement('form');document.body.appendChild(f);var title=document.title;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','title');input.setAttribute('value',title);f.appendChild(input);var uri=location.href;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','uri');input.setAttribute('value',uri);f.appendChild(input);f.method='POST';f.target='_blank';f.action='https://www.catch.jp/program/copy-taro/index.php';f.submit()})());">Webコピ太郎ブックマークレット</a>
 
             <ul>
-            <li>「Webコピ太郎」ボタンをクリックすると、ページタイトルとアドレスをフォームに表示します。</li>
-            <li>ブックマークツールバーに、このボタンをドラッグ＆ドロップしておくと、他のWebページでも情報を取り出せます。</li>
+            <li>「Webコピ太郎ブックマークレット」ボタンをクリックすると、ページタイトルとアドレスをフォームに表示します。</li>
+            <li>ブックマークツールバーに、このボタンをドラッグ＆ドロップしておくと、他のWebページでも同じように情報を取り出せます。</li>
             <li>ボタンを右クリック > 「リンクをブックマーク」でもOK</li>
             </ul>
 
-            <h2>ソースコード</h2>
-            <p>
-                <a href="https://github.com/ycatch/copy-taro">
-                    Link to Github
-                </a>
-            <p>
+            <h2>関連情報</h2>
+            <div>
+                <ul>
+                    <li><a href="https://github.com/ycatch/copy-taro">Github</a></li>
+                    <li><a href="https://github.com/ycatch/copy-taro/blob/master/index.php">このページのソース</a></li>
+                    <li><a href="https://github.com/ycatch/copy-taro/blob/master/bookmarklet.js">ブックマークレット</a></li>
+                </ul>
+                
+            </div>
         </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
