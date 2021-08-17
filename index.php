@@ -23,8 +23,8 @@
         <section class="container">
 
             <h1>Webコピ太郎</h1>
-            <p>Webページの要素をコピペしやすくするツールです。</p>
-            <p>いま見ているページのタイトルとアドレスを、フォームにまとめて表示します。</p>
+            <p>Webページの要素がコピペしやすくなるツールです。</p>
+            <p>いま見ているページのタイトルとアドレスを整形して表示します。</p>
 
             <hr>
             <h2>実際に取得した情報</h2>
@@ -37,7 +37,7 @@
                         if ($key == "title") {
                             $value = mb_convert_encoding($value, "UTF-8", "auto");
                             $pageTitle = htmlspecialchars($value, ENT_QUOTES);
-                            echo '<div>ページタイトル：<span id="pageTitle">' . rtrim($pageTitle) . '</span></div>';
+                            echo '<div>タイトル：<span id="pageTitle">' . rtrim($pageTitle) . '</span></div>';
                         } else {
                             $pageAddress = htmlspecialchars($value, ENT_QUOTES);
                             echo '<div>アドレス：<span id="pageAddress">' . rtrim($pageAddress) . '</span></div>';
@@ -69,9 +69,10 @@
 
             <h3>使い方</h3>
             <ul>
-                <li>「情報を取得する」ボタンをクリックすると、ページタイトルとアドレスを整形して表示します。</li>
-                <li>このボタンを、ブックマークツールバーにドラッグ＆ドロップしておくと、他のWebページでも同じように情報を取り出せます。</li>
-                <li>ボタンを右クリック > 「リンクをブックマーク」でもOK</li>
+                 <li>Webコピ太郎 ブックマークレットは、ブラウザのブックマークツールバーに配置して使います</li>
+                 <li>「情報を取得する」ボタンをクリックすると、ページのタイトルとアドレスを整形して表示します。このページでも、他のページでも動作します</li>
+                <li>このボタンは、ドラッグ＆ドロップでブックマークツールバーに配置できます</li>
+                <li>ボタンを右クリック > 「リンクをブックマーク」でも配置できます</li>
             </ul>
 
             <img src="./screenshot.png">
