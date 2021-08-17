@@ -50,11 +50,11 @@
             <hr>
             <h2>タイトルとアドレス</h2>
             <form>
-                <textarea id="copyArea" class="js-copytext" rows=15 cols=80><?php echo rtrim($output); ?></textarea>
-                <input type="radio" name="format" value="0" checked> テキスト <br>
-                <input type="radio" name="format" value="1"> Markdown-List <br>
-                <input type="radio" name="format" value="2"> Markdown-Link <br>
-                <input type="radio" name="format" value="3"> HTML <br>
+                <textarea id="copyArea" class="js-copytext" rows=20 cols=80><?php echo rtrim($output); ?></textarea>
+                <label><input type="radio" name="format" value="0" checked> テキスト</label>
+                <label><input type="radio" name="format" value="1"> Markdown - List</label>
+                <label><input type="radio" name="format" value="2"> Markdown - Link</label>
+                <label><input type="radio" name="format" value="3"> HTML</label>
                 <p>
                     <a class="button" data-clipboard-target="#copyArea" href="#">クリップボードにコピー </a>
                 </p>
