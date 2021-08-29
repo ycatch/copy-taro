@@ -26,8 +26,14 @@
             <p>Webページの要素がコピペしやすくなるツールです。</p>
             <p>いま見ているページのタイトルとアドレスを整形して表示します。</p>
 
+            <nav> | <a href="#info">取得した情報</a>
+                  | <a href="#format">フォーマットを変える</a>
+                  | <a href="#bookmarklet">ブックマークレット</a>
+                  | <a href="#usage">使い方</a>
+                  | <a href="#relations">関連情報</a>
+                  | </nav>
             <hr>
-            <h2>実際に取得した情報</h2>
+            <h2 id="info">実際に取得した情報</h2>
             <?php
                 if(empty($_POST)) {
                     $output = "This time I don't have any information.";
@@ -48,7 +54,7 @@
             ?>
 
             <hr>
-            <h2>タイトルとアドレス</h2>
+            <h2 id="format">フォーマットを変える</h2>
             <form>
                 <textarea id="copyArea" class="js-copytext" rows=20 cols=80><?php echo rtrim($output); ?></textarea>
                 <label><input type="radio" name="format" value="0" checked> テキスト</label>
@@ -62,12 +68,12 @@
         </section>
 
         <section class="container">
-            <h2>Webコピ太郎 ブックマークレット</h2>
+            <h2 id="bookmarklet">Webコピ太郎 ブックマークレット</h2>
             <a class="button" href="javascript:void((function(undefined){var f=document.createElement('form');document.body.appendChild(f);var title=document.title;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','title');input.setAttribute('value',title);f.appendChild(input);var uri=location.href;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','uri');input.setAttribute('value',uri);f.appendChild(input);f.method='POST';f.target='_blank';f.action='https://www.catch.jp/program/copy-taro/index.php';f.submit()})());">情報を取得する</a>
 
             <hr>
 
-            <h3>使い方</h3>
+            <h2 id="usage">使い方</h2>
             <ul>
                  <li>Webコピ太郎 ブックマークレットは、ブラウザのブックマークツールバーに配置して使います</li>
                  <li>「情報を取得する」ボタンをクリックすると、ページのタイトルとアドレスを整形して表示します。このページでも、他のページでも動作します</li>
@@ -79,7 +85,7 @@
         </section>
         
         <section class="container">
-            <h2>関連情報</h2>
+            <h2 id="relations">関連情報</h2>
 
             <h3>ソースコード</h3>
 
@@ -89,7 +95,7 @@
                 <li><a href="https://github.com/ycatch/copy-taro/blob/master/bookmarklet.js" target="_blank">ブックマークレットのソース</a></li>
             </ul>
 
-            <h3>関連情報</h3>
+            <h3>関連ツール</h3>
 
             <ul>
                 <li><a href="https://milligram.io/" target="_blank">Milligram.css</a></li>
