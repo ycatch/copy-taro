@@ -32,8 +32,8 @@
                   | <a href="#usage">使い方</a>
                   | <a href="#relations">関連情報</a>
                   | </nav>
-            <hr>
-            <h2 id="info">実際に取得した情報</h2>
+            <p></p>
+            <h3 id="info">実際に取得した情報</h3>
             <?php
                 if(empty($_POST)) {
                     $output = "This time I don't have any information.";
@@ -52,28 +52,24 @@
                     $output = $pageTitle . "\n" . $pageAddress;
                 }
             ?>
-
-            <hr>
-            <h2 id="format">フォーマットを変える</h2>
+            <p></p>
+            <h3 id="format">フォーマットを変える</h3>
             <form>
                 <textarea id="copyArea" class="js-copytext" rows=20 cols=80><?php echo rtrim($output); ?></textarea>
-                <label><input type="radio" name="format" value="0" checked> テキスト</label>
-                <label><input type="radio" name="format" value="1"> Markdown - List</label>
-                <label><input type="radio" name="format" value="2"> Markdown - Link</label>
-                <label><input type="radio" name="format" value="3"> HTML</label>
+                <label class="label-inline"><input type="radio" name="format" value="0" checked> テキスト</label>
+                <label class="label-inline"><input type="radio" name="format" value="1"> Markdown - List</label>
+                <label class="label-inline"><input type="radio" name="format" value="2"> Markdown - Link</label>
+                <label class="label-inline"><input type="radio" name="format" value="3"> HTML</label>
                 <p>
                     <a class="button" data-clipboard-target="#copyArea" href="#">クリップボードにコピー </a>
                 </p>
             </form>
-        </section>
-
-        <section class="container">
-            <h2 id="bookmarklet">Webコピ太郎 ブックマークレット</h2>
+            <p></p>
+            <h3 id="bookmarklet">Webコピ太郎 ブックマークレット</h3>
             <a class="button" href="javascript:void((function(undefined){var f=document.createElement('form');document.body.appendChild(f);var title=document.title;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','title');input.setAttribute('value',title);f.appendChild(input);var uri=location.href;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','uri');input.setAttribute('value',uri);f.appendChild(input);f.method='POST';f.target='_blank';f.action='https://www.catch.jp/program/copy-taro/index.php';f.submit()})());">情報を取得する</a>
 
-            <hr>
-
-            <h2 id="usage">使い方</h2>
+            <p></p>
+            <h3 id="usage">使い方</h3>
             <ul>
                  <li>Webコピ太郎 ブックマークレットは、ブラウザのブックマークツールバーに配置して使います</li>
                  <li>「情報を取得する」ボタンをクリックすると、ページのタイトルとアドレスを整形して表示します。このページでも、他のページでも動作します</li>
@@ -82,12 +78,11 @@
             </ul>
 
             <img src="./screenshot.png">
-        </section>
-        
-        <section class="container">
-            <h2 id="relations">関連情報</h2>
 
-            <h3>ソースコード</h3>
+            <p></p>
+            <h3 id="relations">関連情報</h3>
+
+            <h4>ソースコード</h4>
 
             <ul>
                 <li><a href="https://github.com/ycatch/copy-taro" target="_blank">Github</a></li>
@@ -95,7 +90,7 @@
                 <li><a href="https://github.com/ycatch/copy-taro/blob/master/bookmarklet.js" target="_blank">ブックマークレットのソース</a></li>
             </ul>
 
-            <h3>関連ツール</h3>
+            <h4>関連ツール</h4>
 
             <ul>
                 <li><a href="https://milligram.io/" target="_blank">Milligram.css</a></li>
