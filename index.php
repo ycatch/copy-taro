@@ -26,39 +26,41 @@
             <p>Webページの要素がコピペしやすくなるツールです。</p>
             <p>いま見ているページのタイトルとアドレスを整形して表示します。</p>
 
-            <nav> | <a href="#format">フォーマットを変える</a>
+            <nav> | <a href="#info">取得した情報</a>
+                  | <a href="#format">フォーマットを変える</a>
                   | <a href="#bookmarklet">ブックマークレット</a>
                   | <a href="#usage">使い方</a>
                   | <a href="#relations">関連情報</a>
                   | </nav>
-            <details>
-                <summary id="info">>> 取得した情報</summary>
-                <?php
-                    if(empty($_POST)) {
-                        $output = "This time I don't have any information.";
-                    } else {
-                        $output = "";
-                        foreach($_POST as $key => $value) {
-                            if ($key == "title") {
-                                $value = mb_convert_encoding($value, "UTF-8", "auto");
-                                $pageTitle = htmlspecialchars($value, ENT_QUOTES);
-                                echo '<div>タイトル：<span id="pageTitle">' . rtrim($pageTitle) . '</span></div>';
-                            } else {
-                                $pageAddress = htmlspecialchars($value, ENT_QUOTES);
-                                echo '<div>アドレス：<span id="pageAddress">' . rtrim($pageAddress) . '</span></div>';
-                            }
+            <hr>
+            <h2 id="info">実際に取得した情報</h2>
+            <?php
+                if(empty($_POST)) {
+                    $output = "This time I don't have any information.";
+                } else {
+                    $output = "";
+                    foreach($_POST as $key => $value) {
+                        if ($key == "title") {
+                            $value = mb_convert_encoding($value, "UTF-8", "auto");
+                            $pageTitle = htmlspecialchars($value, ENT_QUOTES);
+                            echo '<div>タイトル：<span id="pageTitle">' . rtrim($pageTitle) . '</span></div>';
+                        } else {
+                            $pageAddress = htmlspecialchars($value, ENT_QUOTES);
+                            echo '<div>アドレス：<span id="pageAddress">' . rtrim($pageAddress) . '</span></div>';
                         }
-                        $output = $pageTitle . "\n" . $pageAddress;
                     }
-                ?>
-            </details>
+                    $output = $pageTitle . "\n" . $pageAddress;
+                }
+            ?>
+
+            <hr>
             <h2 id="format">フォーマットを変える</h2>
             <form>
                 <textarea id="copyArea" class="js-copytext" rows=20 cols=80><?php echo rtrim($output); ?></textarea>
-                <label  class="label-inline"><input type="radio" name="format" value="0" checked> テキスト</label>
-                <label  class="label-inline"><input type="radio" name="format" value="1"> Markdown - List</label>
-                <label  class="label-inline"><input type="radio" name="format" value="2"> Markdown - Link</label>
-                <label  class="label-inline"><input type="radio" name="format" value="3"> HTML</label>
+                <label><input type="radio" name="format" value="0" checked> テキスト</label>
+                <label><input type="radio" name="format" value="1"> Markdown - List</label>
+                <label><input type="radio" name="format" value="2"> Markdown - Link</label>
+                <label><input type="radio" name="format" value="3"> HTML</label>
                 <p>
                     <a class="button" data-clipboard-target="#copyArea" href="#">クリップボードにコピー </a>
                 </p>
@@ -68,6 +70,8 @@
         <section class="container">
             <h2 id="bookmarklet">Webコピ太郎 ブックマークレット</h2>
             <a class="button" href="javascript:void((function(undefined){var f=document.createElement('form');document.body.appendChild(f);var title=document.title;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','title');input.setAttribute('value',title);f.appendChild(input);var uri=location.href;var input=document.createElement('input');input.setAttribute('type','hidden');input.setAttribute('name','uri');input.setAttribute('value',uri);f.appendChild(input);f.method='POST';f.target='_blank';f.action='https://www.catch.jp/program/copy-taro/index.php';f.submit()})());">情報を取得する</a>
+
+            <hr>
 
             <h2 id="usage">使い方</h2>
             <ul>
